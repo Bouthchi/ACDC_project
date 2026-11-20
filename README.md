@@ -1,11 +1,6 @@
-
 # ACDC Cardiac MRI Segmentation: Classical Baselines vs U-Net
 
-
-
 We segment cardiac MRI into four classes per pixel: **background (0), right-ventricular cavity (1), myocardium (2) and left-ventricular cavity (3)**. We compare tuned classical pixel classifiers (Logistic Regression and Random Forest) with a U-Net that uses an ImageNet-pretrained ResNet-34 encoder. We also analyse where the models fail and what the improvement costs.
-<img width="2400" height="960" alt="00_final_validation_vs_test" src="https://github.com/user-attachments/assets/f29d9c55-c89d-48f5-80b1-8c1ab031078a" />
-
 
 ## Main results
 
@@ -55,7 +50,7 @@ model.eval()
 | Step | What we did |
 |---|---|
 | Data | ACDC: 100 development patients plus 50 official test patients, each with end-diastole and end-systole volumes and expert masks |
-| Split | Patient-level 80/20 split of the development patients, stratified by the five conditions, seed 42 (`results/config/patient_split_seed42.csv`). The test patients were used once, at the end. |
+| Split | Patient-level 80/20 split of the development patients, stratified by the five conditions, seed 42. The test patients were used once, at the end. |
 | Preprocessing | In-plane resampling to 1.5 mm (linear for images, nearest-neighbour for masks), centre crop/pad to 288 × 288, z-score of nonzero voxels per volume. No annotated tissue was lost by cropping. |
 | Classical models | Five pixel features (intensity, 5 × 5 local mean and std, normalised row and column) and class-balanced pixel sampling. Logistic Regression on standardised features; Random Forest with 8 configurations tuned on validation. |
 | U-Net | `segmentation_models_pytorch` U-Net with an ImageNet ResNet-34 encoder, 1 input channel and 4 output classes, all layers trained. AdamW (encoder LR 1e-4, decoder LR 1e-3), loss = cross-entropy + foreground Dice, 20 epochs, checkpoint chosen by validation loss. |
@@ -64,19 +59,19 @@ model.eval()
 
 ## Repository contents
 
-```
-README.md
-ACDC_Cardiac_Segmentation.ipynb      full code: data checks, preprocessing, models, evaluation, figures
-results/
-  figures/      main figures (results table, per-structure Dice, phase and disease group, MRI examples)
-  test/         test-set scores per model (summary and per-volume CSVs)
-  validation/   model-selection table, fine-tuning history, final-model validation scores
-  config/       final model choice, fine-tuning configuration, patient split
-```
+| File | What it is |
+|---|---|
+| `ACDC_Cardiac_Segmentation.ipynb` | Full code with all outputs: data checks, preprocessing, models, evaluation and figures |
+| `acdc_results.zip` | All result figures, test and validation score tables (summary and per volume), the final model choice, the fine-tuning settings and the patient split |
+| `final_model_selection_validation.csv` | Validation scores used to choose the final model |
+| `final_model_validation_per_volume.csv` | Final model's validation scores for each volume |
+| `finetune_history.csv` | Validation scores after each fine-tuning epoch |
+
+The trained model is attached to the **v1.0 release** (see above).
 
 ## Reproducing
 
-1. Download ACDC from the official site (see References) and put the patient ZIPs in your own Google Drive with this layout:
+1. Download ACDC from the official site (see Data below) and put the patient ZIPs in your own Google Drive with this layout:
    ```
    MyDrive/ACDC dataset/ACDC_patient_downloads/
        patient001.zip ... patient100.zip
@@ -97,6 +92,7 @@ The MRI data is **not** included in this repository. It must be obtained from th
 - Learning rates were fixed standard transfer-learning values, not searched.
 - 2D slice model, with no context between slices. Dice is measured on the resampled grid, not in the original image space.
 - Model confidence (calibration) was not evaluated.
-- 
+
 ## Data
-ACDC dataset: O. Bernard et al., "Deep Learning Techniques for Automatic MRI Cardiac Multi-Structures Segmentation and Diagnosis: Is the Problem Solved?", IEEE Transactions on Medical Imaging, 37(11), 2018. https://www.creatis.insa-lyon.fr/Challenge/acdc/
+
+ACDC dataset: O. Bernard et al., "Deep Learning Techniques for Automatic MRI Cardiac Multi-Structures Segmentation and Diagnosis: Is the Problem Solved?", *IEEE Transactions on Medical Imaging*, 37(11), 2018. https://www.creatis.insa-lyon.fr/Challenge/acdc/
