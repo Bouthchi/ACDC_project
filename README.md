@@ -4,8 +4,8 @@
 
 
 We segment cardiac MRI into four classes per pixel: **background (0), right-ventricular cavity (1), myocardium (2) and left-ventricular cavity (3)**. We compare tuned classical pixel classifiers (Logistic Regression and Random Forest) with a U-Net that uses an ImageNet-pretrained ResNet-34 encoder. We also analyse where the models fail and what the improvement costs.
+<img width="2400" height="960" alt="00_final_validation_vs_test" src="https://github.com/user-attachments/assets/f29d9c55-c89d-48f5-80b1-8c1ab031078a" />
 
-![Validation vs test results](results/figures/00_final_validation_vs_test.png)
 
 ## Main results
 
