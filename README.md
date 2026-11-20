@@ -62,10 +62,7 @@ model.eval()
 | File | What it is |
 |---|---|
 | `ACDC_Cardiac_Segmentation.ipynb` | Full code with all outputs: data checks, preprocessing, models, evaluation and figures |
-| `acdc_results.zip` | All result figures, test and validation score tables (summary and per volume), the final model choice, the fine-tuning settings and the patient split |
-| `final_model_selection_validation.csv` | Validation scores used to choose the final model |
-| `final_model_validation_per_volume.csv` | Final model's validation scores for each volume |
-| `finetune_history.csv` | Validation scores after each fine-tuning epoch |
+| `acdc_results.zip` | Everything the notebook saved as results: all result figures, test and validation score tables (summary and per volume), the final model choice, the fine-tuning settings and the patient split |
 
 The trained model is attached to the **v1.0 release** (see above).
 
