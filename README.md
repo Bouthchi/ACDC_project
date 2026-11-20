@@ -75,7 +75,7 @@ The trained model is attached to the **v1.0 release** (see above).
        testing/patient101.zip ... patient150.zip
    ```
 2. Open the notebook in Google Colab with a **T4 GPU** runtime (Runtime → Change runtime type).
-3. Run the cells in order. The notebook creates the patient split, the preprocessed data, all models and all results in that same Drive folder. Training and evaluation cells reuse saved results if they already exist. **Exception:** on a fresh run, Section 7.2 needs two files that the notebook does not create, `validation_dice_per_volume.csv` and `validation_dice_summary.csv` in `ACDC_experiments/unet_resnet34_seed42/` (the original U-Net's validation scores). The cell that first wrote them is not in the notebook, so a fresh run stops at Section 7.2 unless these files are provided. The same scores are recomputed from the saved checkpoint in Section 9.1 (0.890435, matching the saved 0.890434), so the reported numbers are still reproducible.
+3. Run the cells in order. The notebook creates the patient split, the preprocessed data, all models and all results in that same Drive folder. Training and evaluation cells reuse saved results if they already exist. On a fresh run, Section 7.2 also creates the original U-Net's validation score files (`validation_dice_per_volume.csv` and `validation_dice_summary.csv`) from its saved checkpoint, so no extra files are needed. Section 9.1 recomputes the same scores with a shared evaluator (0.890435, matching the saved 0.890434).
 
 Software used: Python 3, PyTorch 2.14, segmentation-models-pytorch 0.6.0, scikit-learn 1.6.1, nibabel, SciPy, NumPy, pandas, Matplotlib.
 
