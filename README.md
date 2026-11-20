@@ -97,12 +97,6 @@ The MRI data is **not** included in this repository. It must be obtained from th
 - Learning rates were fixed standard transfer-learning values, not searched.
 - 2D slice model, with no context between slices. Dice is measured on the resampled grid, not in the original image space.
 - Model confidence (calibration) was not evaluated.
-
-## References
-
-- O. Bernard et al., "Deep Learning Techniques for Automatic MRI Cardiac Multi-Structures Segmentation and Diagnosis: Is the Problem Solved?", *IEEE Transactions on Medical Imaging*, 37(11), 2018. ACDC dataset: https://www.creatis.insa-lyon.fr/Challenge/acdc/
-- O. Ronneberger, P. Fischer, T. Brox, "U-Net: Convolutional Networks for Biomedical Image Segmentation", MICCAI 2015.
-- K. He, X. Zhang, S. Ren, J. Sun, "Deep Residual Learning for Image Recognition", CVPR 2016.
-- P. Iakubovskii, Segmentation Models PyTorch, https://github.com/qubvel-org/segmentation_models.pytorch
-- F. Pedregosa et al., "Scikit-learn: Machine Learning in Python", *JMLR* 12, 2011.
-- A. Paszke et al., "PyTorch: An Imperative Style, High-Performance Deep Learning Library", NeurIPS 2019.
+- 
+## Data
+ACDC dataset: O. Bernard et al., "Deep Learning Techniques for Automatic MRI Cardiac Multi-Structures Segmentation and Diagnosis: Is the Problem Solved?", IEEE Transactions on Medical Imaging, 37(11), 2018. https://www.creatis.insa-lyon.fr/Challenge/acdc/
